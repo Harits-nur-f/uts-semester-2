@@ -1,2 +1,5 @@
 <h1>Tugas UTS di Semester 2</h1>
 <p> Harits Nur Fardansyah </p>
+<p> AKD-P</p>
+
+<p>Vibe Coding pake claude</p>
