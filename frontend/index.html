@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LanikaStore — Belanja Premium</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar-container"></div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div>
+    <p class="hero-eyebrow">✦ Koleksi Terbaru 2026</p>
+    <h1>Temukan Produk <em>Pilihan</em><br>Terbaik untuk Anda</h1>
+    <p>Ribuan produk berkualitas dari kategori elektronik, fashion, kecantikan, dan banyak lagi — dikirim ke seluruh Indonesia.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary btn-lg" onclick="document.getElementById('products-section').scrollIntoView({behavior:'smooth'})">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Belanja Sekarang
+      </button>
+      <button class="btn btn-outline btn-lg" onclick="document.getElementById('featured-section').scrollIntoView({behavior:'smooth'})">
+        Produk Unggulan
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products -->
+<section class="section" id="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Produk <em>Unggulan</em></h2>
+      <a href="#products-section" class="btn btn-ghost btn-sm" onclick="document.getElementById('products-section').scrollIntoView({behavior:'smooth'});return false;">Lihat semua →</a>
+    </div>
+    <div class="product-grid" id="featured-grid">
+      <!-- Skeleton -->
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- All Products -->
+<section class="section" id="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Semua <em>Produk</em></h2>
+    </div>
+
+    <!-- Category Chips -->
+    <div class="category-chips" id="category-chips">
+      <span class="chip active" data-id="0">Semua</span>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <span class="result-count" id="result-count">Memuat produk...</span>
+      <select id="sortSelect" onchange="loadProducts()">
+        <option value="newest">Terbaru</option>
+        <option value="price_asc">Harga: Rendah ke Tinggi</option>
+        <option value="price_desc">Harga: Tinggi ke Rendah</option>
+        <option value="name_asc">Nama: A–Z</option>
+      </select>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="products-grid">
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+      <div class="skeleton-card"><div class="skeleton skeleton-image"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text-sm"></div></div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">LanikaStore</div>
+      <p class="footer-desc">Platform belanja online terpercaya dengan ribuan produk pilihan. Pengiriman cepat ke seluruh Indonesia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Belanja</h4>
+      <ul>
+        <li><a href="#">Elektronik</a></li>
+        <li><a href="#">Fashion</a></li>
+        <li><a href="#">Kecantikan</a></li>
+        <li><a href="#">Olahraga</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Bantuan</h4>
+      <ul>
+        <li><a href="#">Cara Order</a></li>
+        <li><a href="#">Pengiriman</a></li>
+        <li><a href="#">Pengembalian</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Tentang</h4>
+      <ul>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><a href="#">Karir</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Hubungi Kami</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 LanikaStore. Dibuat dengan ❤ di Indonesia.</p>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  let currentPage = 1;
+  let currentCategory = 0;
+  let searchQuery = '';
+
+  // Read URL params
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('search')) searchQuery = urlParams.get('search');
+
+  // Load categories
+  async function loadCategories() {
+    const res = await apiRequest('products.php?action=categories');
+    if (!res?.success) return;
+
+    const chips = document.getElementById('category-chips');
+    res.data.forEach(cat => {
+      const chip = document.createElement('span');
+      chip.className = 'chip';
+      chip.dataset.id = cat.id;
+      chip.textContent = `${cat.name} (${cat.product_count})`;
+      chip.onclick = () => selectCategory(cat.id);
+      chips.appendChild(chip);
+    });
+  }
+
+  function selectCategory(id) {
+    currentCategory = id;
+    currentPage = 1;
+    document.querySelectorAll('.category-chips .chip').forEach(c => {
+      c.classList.toggle('active', parseInt(c.dataset.id) === id);
+    });
+    loadProducts();
+  }
+
+  // Load products
+  async function loadProducts() {
+    const grid = document.getElementById('products-grid');
+    renderSkeletonGrid(grid, 8);
+
+    const sort = document.getElementById('sortSelect').value;
+    const params = new URLSearchParams({
+      action: 'list',
+      page: currentPage,
+      sort,
+      ...(currentCategory ? { category: currentCategory } : {}),
+      ...(searchQuery ? { search: searchQuery } : {}),
+    });
+
+    const res = await apiRequest(`products.php?${params}`);
+    if (!res?.success) {
+      grid.innerHTML = '<div class="empty-state"><p>Gagal memuat produk.</p></div>';
+      return;
+    }
+
+    const { products, total, totalPages } = res.data;
+
+    document.getElementById('result-count').textContent =
+      `Menampilkan ${products.length} dari ${total} produk`;
+
+    if (products.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column:1/-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <h3>Produk tidak ditemukan</h3>
+          <p>Coba kata kunci lain atau pilih kategori berbeda.</p>
+          <button class="btn btn-outline" onclick="resetFilter()">Reset Filter</button>
+        </div>`;
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+
+    grid.innerHTML = products.map(renderProductCard).join('');
+    renderPagination(totalPages);
+  }
+
+  function resetFilter() {
+    currentCategory = 0;
+    currentPage = 1;
+    searchQuery = '';
+    document.getElementById('sortSelect').value = 'newest';
+    document.querySelectorAll('.category-chips .chip').forEach(c => c.classList.toggle('active', c.dataset.id === '0'));
+    if (document.getElementById('searchInput')) document.getElementById('searchInput').value = '';
+    loadProducts();
+  }
+
+  // Render pagination
+  function renderPagination(total) {
+    const pag = document.getElementById('pagination');
+    if (total <= 1) { pag.innerHTML = ''; return; }
+
+    let html = `
+      <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹</button>
+    `;
+
+    for (let i = 1; i <= total; i++) {
+      if (i === 1 || i === total || Math.abs(i - currentPage) <= 2) {
+        html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+      } else if (Math.abs(i - currentPage) === 3) {
+        html += `<span style="color:var(--text-muted);padding:0 4px">…</span>`;
+      }
+    }
+
+    html += `<button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === total ? 'disabled' : ''}>›</button>`;
+    pag.innerHTML = html;
+  }
+
+  function changePage(page) {
+    currentPage = page;
+    loadProducts();
+    document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Load featured
+  async function loadFeatured() {
+    const res = await apiRequest('products.php?action=featured');
+    const grid = document.getElementById('featured-grid');
+    if (!res?.success) { grid.innerHTML = ''; return; }
+    grid.innerHTML = res.data.map(renderProductCard).join('');
+  }
+
+  // Init
+  loadCategories();
+  loadFeatured();
+  loadProducts();
+</script>
+</body>
+</html>

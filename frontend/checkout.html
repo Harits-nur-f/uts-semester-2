@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — LanikaStore</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div id="navbar-container"></div>
+
+<main class="container" style="padding-bottom:4rem;">
+
+  <div class="page-title-section">
+    <h1 class="page-title">Checkout</h1>
+    <p class="page-breadcrumb">
+      <a href="index.html">Beranda</a> / <a href="cart.html">Keranjang</a> / Checkout
+    </p>
+  </div>
+
+  <div id="loading" style="text-align:center;padding:3rem;color:var(--text-muted);">
+    <p>Memuat data...</p>
+  </div>
+
+  <div id="checkout-content" class="cart-layout" style="display:none;">
+    <!-- Shipping Form -->
+    <div>
+      <h2 style="font-family:var(--font-display);font-size:1.3rem;margin-bottom:1.5rem;">Informasi Pengiriman</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nama Penerima *</label>
+          <input type="text" id="shipping_name" class="form-control" placeholder="Nama lengkap" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">No. Telepon *</label>
+          <input type="tel" id="shipping_phone" class="form-control" placeholder="08xxxxxxxxxx" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Alamat Lengkap *</label>
+        <textarea id="shipping_address" class="form-control" placeholder="Jalan, nomor rumah, RT/RW, kelurahan, kecamatan"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Kota / Kabupaten *</label>
+        <input type="text" id="shipping_city" class="form-control" placeholder="Contoh: Bogor, Bandung, Jakarta Selatan" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Catatan Pesanan</label>
+        <input type="text" id="notes" class="form-control" placeholder="Opsional — instruksi khusus untuk penjual" />
+      </div>
+
+      <hr class="divider" />
+
+      <h2 style="font-family:var(--font-display);font-size:1.3rem;margin-bottom:1.25rem;">Metode Pembayaran</h2>
+
+      <div id="payment-methods" style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem;">
+        <label style="display:flex;align-items:center;gap:0.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;">
+          <input type="radio" name="payment" value="transfer" checked style="accent-color:var(--accent);" />
+          <div>
+            <div style="font-weight:500;">Transfer Bank</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">BCA, BNI, BRI, Mandiri</div>
+          </div>
+        </label>
+        <label style="display:flex;align-items:center;gap:0.75rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1rem;cursor:pointer;">
+          <input type="radio" name="payment" value="ewallet" style="accent-color:var(--accent);" />
+          <div>
+            <div style="font-weight:500;">E-Wallet</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">GoPay, OVO, Dana, ShopeePay</div>
+          </div>
+        </label>
+        <label style="display:flex;align-items:center;gap:0.75rem;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1rem;cursor:pointer;">
+          <input type="radio" name="payment" value="cod" style="accent-color:var(--accent);" />
+          <div>
+            <div style="font-weight:500;">Bayar di Tempat (COD)</div>
+            <div style="font-size:0.78rem;color:var(--text-muted);">Area tertentu</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3 class="summary-title">Ringkasan Pesanan</h3>
+
+      <div id="checkout-items" style="margin-bottom:1rem;border-bottom:1px solid var(--border-subtle);padding-bottom:1rem;max-height:300px;overflow-y:auto;"></div>
+
+      <div class="summary-row">
+        <span id="item-count-label">Subtotal (0 item)</span>
+        <span id="checkout-subtotal">Rp 0</span>
+      </div>
+      <div class="summary-row">
+        <span>Pengiriman</span>
+        <span style="color:var(--success);">GRATIS</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total Bayar</span>
+        <span class="price" id="checkout-total">Rp 0</span>
+      </div>
+
+      <button class="btn btn-primary btn-full" style="margin-top:1.25rem;" id="btn-order" onclick="placeOrder()">
+        Konfirmasi & Pesan
+      </button>
+
+      <p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;">
+        Dengan memesan, Anda menyetujui syarat & ketentuan kami.
+      </p>
+    </div>
+  </div>
+
+  <!-- Success State -->
+  <div id="success-state" class="empty-state" style="display:none;">
+    <div style="font-size:4rem;margin-bottom:1rem;">🎉</div>
+    <h3 style="color:var(--success);">Pesanan Berhasil!</h3>
+    <p>Terima kasih telah berbelanja di LanikaStore. Pesanan Anda sedang diproses.</p>
+    <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+      <a href="orders.html" class="btn btn-primary">Lihat Pesanan Saya</a>
+      <a href="index.html" class="btn btn-outline">Lanjut Belanja</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 LanikaStore. Dibuat dengan ❤ di Indonesia.</p>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script>
+  let cartData = null;
+
+  async function loadCartSummary() {
+    if (!Auth.requireLogin()) return;
+
+    const res = await apiRequest('cart.php?action=list');
+    document.getElementById('loading').style.display = 'none';
+
+    if (!res?.success || res.data.count === 0) {
+      window.location.href = 'cart.html';
+      return;
+    }
+
+    cartData = res.data;
+    document.getElementById('checkout-content').style.display = 'grid';
+
+    // Prefill name from user
+    const user = Auth.getUser();
+    if (user) document.getElementById('shipping_name').value = user.name;
+
+    // Render items
+    const itemsHtml = cartData.items.map(item => `
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+        <img src="${item.image_url}" style="width:48px;height:48px;border-radius:6px;object-fit:cover;background:var(--bg-secondary);" />
+        <div style="flex:1;">
+          <div style="font-size:0.85rem;font-weight:500;">${item.name}</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);">× ${item.quantity}</div>
+        </div>
+        <div style="font-size:0.85rem;color:var(--accent);">${formatRupiah(item.subtotal)}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('checkout-items').innerHTML = itemsHtml;
+    document.getElementById('item-count-label').textContent = `Subtotal (${cartData.count} item)`;
+    document.getElementById('checkout-subtotal').textContent = formatRupiah(cartData.total);
+    document.getElementById('checkout-total').textContent = formatRupiah(cartData.total);
+  }
+
+  async function placeOrder() {
+    const name    = document.getElementById('shipping_name').value.trim();
+    const phone   = document.getElementById('shipping_phone').value.trim();
+    const address = document.getElementById('shipping_address').value.trim();
+    const city    = document.getElementById('shipping_city').value.trim();
+    const notes   = document.getElementById('notes').value.trim();
+
+    if (!name || !phone || !address || !city) {
+      showToast('Lengkapi semua data pengiriman yang wajib diisi.', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btn-order');
+    btn.disabled = true;
+    btn.textContent = 'Memproses...';
+
+    const res = await apiRequest('orders.php?action=create', {
+      method: 'POST',
+      body: JSON.stringify({ shipping_name: name, shipping_phone: phone, shipping_address: address, shipping_city: city, notes }),
+    });
+
+    if (res?.success) {
+      document.getElementById('checkout-content').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      updateCartBadge();
+    } else {
+      showToast(res?.message || 'Gagal membuat pesanan.', 'error');
+      btn.disabled = false;
+      btn.textContent = 'Konfirmasi & Pesan';
+    }
+  }
+
+  loadCartSummary();
+</script>
+</body>
+</html>
